@@ -1,0 +1,98 @@
+allow-lan: false
+mode: rule        # Режим правил
+log-level: info
+
+proxies:
+  - name: "Tor SOCKS5"
+    type: socks5
+    server: 127.0.0.1
+    port: 9050    # стандартный Tor SOCKS5 порт
+    udp: true
+
+proxy-groups:
+  - name: "Auto"
+    type: select
+    proxies:
+      - "Tor SOCKS5"
+      - "DIRECT"
+
+rules:
+  # Сайты через Tor
+  # 4pda
+  - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
+  # AdGuard
+  - DOMAIN-SUFFIX,adguard.com,Tor SOCKS5
+  # Anker
+  - DOMAIN-SUFFIX,anker.com,Tor SOCKS5
+  # APKMirror
+  - DOMAIN-SUFFIX,www.apkmirror.com,Tor SOCKS5
+  #- DOMAIN-SUFFIX,cloudflare.com,Tor SOCKS5
+  #- DOMAIN-SUFFIX,cloudflareinsights.com,Tor SOCKS5
+  # BBC
+  - DOMAIN-SUFFIX,bbc.com,Tor SOCKS5
+  # CloudFlare
+  - DOMAIN-SUFFIX,cloudflareclient.com,Tor SOCKS5
+  # DW
+  - DOMAIN-SUFFIX,dw.com,Tor SOCKS5
+  # EndOfLife
+  - DOMAIN-SUFFIX,endoflife.date,Tor SOCKS5
+  # Facebook
+  - DOMAIN-SUFFIX,accountkit.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,atdmt.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,atlassolutions.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,facebook.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,facebook.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,facebookmail.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,fb.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,fb.gg,Tor SOCKS5
+  - DOMAIN-SUFFIX,fb.watch,Tor SOCKS5
+  - DOMAIN-SUFFIX,fbcdn.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,fbsbx.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,fburl.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,fbwat.ch,Tor SOCKS5
+  - DOMAIN-SUFFIX,internalfb.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,parse.com,Tor SOCKS5
+  # Instagram
+  - DOMAIN-SUFFIX,cdninstagram.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,instagram.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,ig.me,Tor SOCKS5
+  # MassGrave
+  - DOMAIN-SUFFIX,gravesoft.dev,Tor SOCKS5
+  # Medium
+  - DOMAIN-SUFFIX,medium.com,Tor SOCKS5
+  # OpenAI
+  - DOMAIN-SUFFIX,chatgpt.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,oaistatic.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,oaiusercontent.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,openai.com,Tor SOCKS5
+  # orbot
+  - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
+  # Spotify
+  # - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
+  # Tor
+  - DOMAIN-SUFFIX,torproject.org,Tor SOCKS5
+  # Ugreen
+  - DOMAIN-SUFFIX,ugreen.com,Tor SOCKS5
+  # WhatsApp
+  - DOMAIN-SUFFIX,whatsapp.com,Tor SOCKS5
+  # WhoSampled
+  - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
+  # YouTube
+  - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,googleusercontent.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,android.clients.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,clients4.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,clients6.google.com,Tor SOCKS5
+  # mi
+  # - DOMAIN-SUFFIX,mi.com,Tor SOCKS5
+  # Всё остальное напрямую
+  - MATCH,DIRECT
