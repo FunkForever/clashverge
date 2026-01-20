@@ -75,6 +75,7 @@ rules:
   - DOMAIN-SUFFIX,ugreen.com,Tor SOCKS5
   # WhatsApp
   - DOMAIN-SUFFIX,whatsapp.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,whatsapp.net,Tor SOCKS5
   # WhoSampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
   # YouTube
