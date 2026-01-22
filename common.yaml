@@ -20,23 +20,21 @@ rules:
   # Сайты через Tor
   # 4pda
   - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
-  # AdGuard
+  # adguard
   - DOMAIN-SUFFIX,adguard.com,Tor SOCKS5
-  # Anker
+  # anker
   - DOMAIN-SUFFIX,anker.com,Tor SOCKS5
-  # APKMirror
+  # apkmirror
   - DOMAIN-SUFFIX,www.apkmirror.com,Tor SOCKS5
-  #- DOMAIN-SUFFIX,cloudflare.com,Tor SOCKS5
-  #- DOMAIN-SUFFIX,cloudflareinsights.com,Tor SOCKS5
-  # BBC
+  # bbc
   - DOMAIN-SUFFIX,bbc.com,Tor SOCKS5
-  # CloudFlare
+  # cloudflare
   - DOMAIN-SUFFIX,cloudflareclient.com,Tor SOCKS5
-  # DW
+  # dw
   - DOMAIN-SUFFIX,dw.com,Tor SOCKS5
-  # EndOfLife
+  # endoflife
   - DOMAIN-SUFFIX,endoflife.date,Tor SOCKS5
-  # Facebook
+  # facebook
   - DOMAIN-SUFFIX,accountkit.com,Tor SOCKS5
   - DOMAIN-SUFFIX,atdmt.com,Tor SOCKS5
   - DOMAIN-SUFFIX,atlassolutions.com,Tor SOCKS5
@@ -52,33 +50,38 @@ rules:
   - DOMAIN-SUFFIX,fbwat.ch,Tor SOCKS5
   - DOMAIN-SUFFIX,internalfb.com,Tor SOCKS5
   - DOMAIN-SUFFIX,parse.com,Tor SOCKS5
-  # Instagram
+  # instagram
   - DOMAIN-SUFFIX,cdninstagram.com,Tor SOCKS5
   - DOMAIN-SUFFIX,instagram.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ig.me,Tor SOCKS5
-  # MassGrave
+  # knirps
+  - DOMAIN-SUFFIX,knirps.com,Tor SOCKS5
+  # massgrave
   - DOMAIN-SUFFIX,gravesoft.dev,Tor SOCKS5
-  # Medium
+  # medium
   - DOMAIN-SUFFIX,medium.com,Tor SOCKS5
-  # OpenAI
+  # openai
   - DOMAIN-SUFFIX,chatgpt.com,Tor SOCKS5
   - DOMAIN-SUFFIX,oaistatic.com,Tor SOCKS5
   - DOMAIN-SUFFIX,oaiusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,openai.com,Tor SOCKS5
   # orbot
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
-  # Spotify
-  # - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
-  # Tor
+  # spotify
+  - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
+  # tomorrowland
+  - DOMAIN-SUFFIX,awswaf.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,tomorrowland.com,Tor SOCKS5
+  # tor
   - DOMAIN-SUFFIX,torproject.org,Tor SOCKS5
-  # Ugreen
+  # ugreen
   - DOMAIN-SUFFIX,ugreen.com,Tor SOCKS5
-  # WhatsApp
+  # whatsapp
   - DOMAIN-SUFFIX,whatsapp.com,Tor SOCKS5
   - DOMAIN-SUFFIX,whatsapp.net,Tor SOCKS5
-  # WhoSampled
+  # whosampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
-  # YouTube
+  # youtube
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
@@ -93,7 +96,5 @@ rules:
   - DOMAIN-SUFFIX,android.clients.google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,clients4.google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,clients6.google.com,Tor SOCKS5
-  # mi
-  # - DOMAIN-SUFFIX,mi.com,Tor SOCKS5
   # Всё остальное напрямую
   - MATCH,DIRECT
