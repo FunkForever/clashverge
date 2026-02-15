@@ -69,6 +69,10 @@ rules:
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
   # spotify
   - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
+  # telegram
+  - DOMAIN-SUFFIX,t.me,Tor SOCKS5
+  - DOMAIN-SUFFIX,telegram.org,Tor SOCKS5
+  - DOMAIN-SUFFIX,telesco.pe,Tor SOCKS5
   # tomorrowland
   - DOMAIN-SUFFIX,awswaf.com,Tor SOCKS5
   - DOMAIN-SUFFIX,tomorrowland.com,Tor SOCKS5
