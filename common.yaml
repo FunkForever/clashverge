@@ -67,6 +67,8 @@ rules:
   - DOMAIN-SUFFIX,openai.com,Tor SOCKS5
   # orbot
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
+  # small.oisd.nl
+  - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
   # spotify
   - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
   # telegram
