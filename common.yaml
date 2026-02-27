@@ -30,6 +30,9 @@ rules:
   - DOMAIN-SUFFIX,bbc.com,Tor SOCKS5
   # cloudflare
   - DOMAIN-SUFFIX,cloudflareclient.com,Tor SOCKS5
+  # cyberduck.io
+  - DOMAIN-SUFFIX,cyberduck.io,Tor SOCKS5
+  - DOMAIN-SUFFIX,rackcdn.com,Tor SOCKS5
   # dw
   - DOMAIN-SUFFIX,dw.com,Tor SOCKS5
   # endoflife
@@ -82,6 +85,8 @@ rules:
   - DOMAIN-SUFFIX,torproject.org,Tor SOCKS5
   # ugreen
   - DOMAIN-SUFFIX,ugreen.com,Tor SOCKS5
+  # waterpik.com
+  - DOMAIN-SUFFIX,waterpik.com,Tor SOCKS5
   # whatsapp
   - DOMAIN-SUFFIX,whatsapp.com,Tor SOCKS5
   - DOMAIN-SUFFIX,whatsapp.net,Tor SOCKS5
