@@ -70,6 +70,8 @@ rules:
   - DOMAIN-SUFFIX,openai.com,Tor SOCKS5
   # orbot
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
+  # portchecker.co
+  - DOMAIN-SUFFIX,portchecker.co,Tor SOCKS5
   # small.oisd.nl
   - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
   # spotify
@@ -92,6 +94,8 @@ rules:
   - DOMAIN-SUFFIX,whatsapp.net,Tor SOCKS5
   # whosampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
+  # yougetsignal.com
+  - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
   # youtube
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
