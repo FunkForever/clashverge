@@ -77,9 +77,20 @@ rules:
   # spotify
   - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
   # telegram
-  # - DOMAIN-SUFFIX,t.me,Tor SOCKS5
-  # - DOMAIN-SUFFIX,telegram.org,Tor SOCKS5
-  # - DOMAIN-SUFFIX,telesco.pe,Tor SOCKS5
+  - DOMAIN-SUFFIX,telegram.org,Tor SOCKS5
+  - DOMAIN-SUFFIX,t.me,Tor SOCKS5
+  - DOMAIN-SUFFIX,telegram.me,Tor SOCKS5
+  - DOMAIN-SUFFIX,telesco.pe,Tor SOCKS5
+  - DOMAIN-SUFFIX,telegra.ph,Tor SOCKS5
+  - DOMAIN-SUFFIX,tdesktop.com,Tor SOCKS5
+  # telegram DC
+  - IP-CIDR,91.108.4.0/22,Tor SOCKS5,no-resolve
+  - IP-CIDR,91.108.8.0/22,Tor SOCKS5,no-resolve
+  - IP-CIDR,91.108.12.0/22,Tor SOCKS5,no-resolve
+  - IP-CIDR,91.108.16.0/22,Tor SOCKS5,no-resolve
+  - IP-CIDR,91.108.20.0/22,Tor SOCKS5,no-resolve
+  - IP-CIDR,91.108.56.0/22,Tor SOCKS5,no-resolve
+  - IP-CIDR,149.154.160.0/20,Tor SOCKS5,no-resolve
   # tomorrowland
   - DOMAIN-SUFFIX,awswaf.com,Tor SOCKS5
   - DOMAIN-SUFFIX,tomorrowland.com,Tor SOCKS5
