@@ -110,7 +110,7 @@ rules:
   - DOMAIN-SUFFIX,static.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,fbcdn.net,Tor SOCKS5
   # Meta network
-  - IP-ASN,AS32934,Tor SOCKS5
+  # - IP-ASN,AS32934,Tor SOCKS5
   # whosampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
   # yougetsignal.com
