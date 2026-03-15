@@ -106,6 +106,9 @@ rules:
   - DOMAIN-SUFFIX,whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,whatsapp-cdn.net,Tor SOCKS5
   - DOMAIN-SUFFIX,mmg.whatsapp.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,pps.whatsapp.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,static.whatsapp.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,fbcdn.net,Tor SOCKS
   # Meta network
   - IP-ASN,AS32934,Tor SOCKS5
   # whosampled
