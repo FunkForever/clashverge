@@ -109,8 +109,12 @@ rules:
   - DOMAIN-SUFFIX,pps.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,static.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,fbcdn.net,Tor SOCKS5
-  # Meta network
-  - IP-ASN,AS32934,Tor SOCKS5
+  # Meta networks
+  - IP-CIDR,31.13.64.0/18,Tor SOCKS5,no-resolve
+  - IP-CIDR,66.220.144.0/20,Tor SOCKS5,no-resolve
+  - IP-CIDR,69.63.176.0/20,Tor SOCKS5,no-resolve
+  - IP-CIDR,69.171.224.0/19,Tor SOCKS5,no-resolve
+  - IP-CIDR,157.240.0.0/16,Tor SOCKS5,no-resolve
   # whosampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
   # yougetsignal.com
