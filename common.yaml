@@ -101,8 +101,13 @@ rules:
   # waterpik.com
   - DOMAIN-SUFFIX,waterpik.com,Tor SOCKS5
   # whatsapp
+  - DOMAIN-KEYWORD,whatsapp,Tor SOCKS5
   - DOMAIN-SUFFIX,whatsapp.com,Tor SOCKS5
   - DOMAIN-SUFFIX,whatsapp.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,whatsapp-cdn.net,Tor SOCKS5
+  - DOMAIN-SUFFIX,mmg.whatsapp.net,Tor SOCKS5
+  # Meta network
+  - IP-ASN,AS32934,Tor SOCKS5
   # whosampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
   # yougetsignal.com
