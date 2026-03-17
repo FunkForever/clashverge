@@ -84,13 +84,14 @@ rules:
   - DOMAIN-SUFFIX,telegra.ph,Tor SOCKS5
   - DOMAIN-SUFFIX,tdesktop.com,Tor SOCKS5
   # telegram DC
+  - IP-CIDR,149.154.160.0/20,Tor SOCKS5,no-resolve
+  - IP-CIDR,5.28.0.0/16,Tor SOCKS5,no-resolve
   - IP-CIDR,91.108.4.0/22,Tor SOCKS5,no-resolve
   - IP-CIDR,91.108.8.0/22,Tor SOCKS5,no-resolve
   - IP-CIDR,91.108.12.0/22,Tor SOCKS5,no-resolve
   - IP-CIDR,91.108.16.0/22,Tor SOCKS5,no-resolve
   - IP-CIDR,91.108.20.0/22,Tor SOCKS5,no-resolve
   - IP-CIDR,91.108.56.0/22,Tor SOCKS5,no-resolve
-  - IP-CIDR,149.154.160.0/20,Tor SOCKS5,no-resolve
   # tomorrowland
   - DOMAIN-SUFFIX,awswaf.com,Tor SOCKS5
   - DOMAIN-SUFFIX,tomorrowland.com,Tor SOCKS5
