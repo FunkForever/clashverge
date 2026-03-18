@@ -76,6 +76,17 @@ rules:
   - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
   # spotify
   - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
+  # ===== Spotify (оптимальный баланс) =====
+  # --- API / авторизация → через Tor ---
+  - DOMAIN-KEYWORD,spotify,Tor SOCKS5
+  - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,spoti.fi,Tor SOCKS5
+  # --- клиентские ресурсы ---
+  - DOMAIN-SUFFIX,scdn.co,Tor SOCKS5
+  # --- аудио CDN → напрямую (ВАЖНО для скорости)     ---
+  - DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+  - DOMAIN-SUFFIX,akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,fastly.net,DIRECT
   # telegram
   - DOMAIN-SUFFIX,telegram.org,Tor SOCKS5
   - DOMAIN-SUFFIX,t.me,Tor SOCKS5
