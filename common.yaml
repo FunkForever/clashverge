@@ -53,6 +53,8 @@ rules:
   - DOMAIN-SUFFIX,fbwat.ch,Tor SOCKS5
   - DOMAIN-SUFFIX,internalfb.com,Tor SOCKS5
   - DOMAIN-SUFFIX,parse.com,Tor SOCKS5
+  # google
+  - DOMAIN-SUFFIX,play.googleapis.com,DIRECT
   # instagram
   - DOMAIN-SUFFIX,cdninstagram.com,Tor SOCKS5
   - DOMAIN-SUFFIX,instagram.com,Tor SOCKS5
