@@ -135,6 +135,7 @@ rules:
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
   # youtube
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com, Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
