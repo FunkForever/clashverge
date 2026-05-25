@@ -139,6 +139,7 @@ rules:
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com, Tor SOCKS5
+  - DOMAIN-SUFFIX,suggestqueries.google.com, Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
