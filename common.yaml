@@ -135,21 +135,21 @@ rules:
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
   # youtube
+  - DOMAIN-SUFFIX,android.clients.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,clients4.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,clients6.google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
+# - DOMAIN-SUFFIX,googleusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com, Tor SOCKS5
   - DOMAIN-SUFFIX,suggestqueries.google.com, Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
-  - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5
-  # - DOMAIN-SUFFIX,googleusercontent.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,android.clients.google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,clients4.google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,clients6.google.com,Tor SOCKS5
   # Всё остальное напрямую
   - MATCH,DIRECT
