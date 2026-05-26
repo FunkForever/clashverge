@@ -74,6 +74,8 @@ rules:
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
   # portchecker.co
   - DOMAIN-SUFFIX,portchecker.co,Tor SOCKS5
+  # YouTube revanced
+  - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
   # small.oisd.nl
   - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
   # spotify
