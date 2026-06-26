@@ -98,6 +98,8 @@ rules:
   - DOMAIN-SUFFIX,telesco.pe,Tor SOCKS5
   - DOMAIN-SUFFIX,telegra.ph,Tor SOCKS5
   - DOMAIN-SUFFIX,tdesktop.com,Tor SOCKS5
+  # rutracker.org
+  - DOMAIN-SUFFIX,rutracker.org,Tor SOCKS5
   # telegram DC
   - IP-CIDR,149.154.160.0/20,Tor SOCKS5,no-resolve
   - IP-CIDR,5.28.0.0/16,Tor SOCKS5,no-resolve
