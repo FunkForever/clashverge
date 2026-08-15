@@ -1,4 +1,4 @@
-Oallow-lan: false
+allow-lan: false
 mode: rule        # Режим правил
 log-level: info
 
@@ -9,7 +9,7 @@ proxies:
     port: 9050    # стандартный Tor SOCKS5 порт
     udp: true
 
-Tor SOCKS5-groups:
+proxy-groups:
   - name: "Auto"
     type: select
     proxies:
@@ -17,7 +17,32 @@ Tor SOCKS5-groups:
       - "DIRECT"
 
 rules:
-  # Сайты через Tor
+  # === 1. Мусорный трафик и ошибочные IP ===
+  - IP-CIDR,7.0.0.0/8,REJECT,no-resolve
+  - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+
+  # === 2. Исключения для системных процессов macOS и транспорта Tor ===
+  - PROCESS-NAME,obfs4proxy,DIRECT
+  - PROCESS-NAME,Notes,DIRECT
+
+  # === 3. Защита почтовых и системных портов (прямо, чтобы не вешать Tor) ===
+  - DST-PORT,993,DIRECT
+  - DST-PORT,143,DIRECT
+  - DST-PORT,585,DIRECT
+  - DST-PORT,465,DIRECT
+  - DST-PORT,25,DIRECT
+
+  # === 4. Системные службы и Google (напрямую) ===
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,microsoft.com,DIRECT
+  - DOMAIN-SUFFIX,microsoftpersonalcontent.com,DIRECT
+  - DOMAIN-SUFFIX,://microsoft.com,DIRECT
+  - DOMAIN-SUFFIX,gmail.com,DIRECT
+  - DOMAIN-SUFFIX,google.com,DIRECT
+  - DOMAIN-SUFFIX,ipapi.co,DIRECT
+
+  # === 5. Сайты через Tor ===
   # 4pda
   - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
   # adguard
@@ -53,8 +78,8 @@ rules:
   - DOMAIN-SUFFIX,fbwat.ch,Tor SOCKS5
   - DOMAIN-SUFFIX,internalfb.com,Tor SOCKS5
   - DOMAIN-SUFFIX,parse.com,Tor SOCKS5
-  # google
-  - DOMAIN-SUFFIX,play.google.com,DIRECT
+  # google play
+  - DOMAIN-SUFFIX,://google.com,DIRECT
   # instagram
   - DOMAIN-SUFFIX,cdninstagram.com,Tor SOCKS5
   - DOMAIN-SUFFIX,instagram.com,Tor SOCKS5
@@ -78,19 +103,16 @@ rules:
   - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
   # small.oisd.nl
   - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
-  # spotify
-  - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
-  # ===== Spotify (оптимальный баланс) =====
-  # --- API / авторизация → через Tor ---
+  
+  # ===== Spotify =====
   - DOMAIN-KEYWORD,spotify,Tor SOCKS5
   - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
   - DOMAIN-SUFFIX,spoti.fi,Tor SOCKS5
-  # --- клиентские ресурсы ---
   - DOMAIN-SUFFIX,scdn.co,Tor SOCKS5
-  # --- аудио CDN → напрямую (ВАЖНО для скорости)     ---
   - DOMAIN-SUFFIX,spotifycdn.com,DIRECT
   - DOMAIN-SUFFIX,akamaized.net,DIRECT
   - DOMAIN-SUFFIX,fastly.net,DIRECT
+
   # telegram
   - DOMAIN-SUFFIX,telegram.org,Tor SOCKS5
   - DOMAIN-SUFFIX,t.me,Tor SOCKS5
@@ -100,15 +122,24 @@ rules:
   - DOMAIN-SUFFIX,tdesktop.com,Tor SOCKS5
   # rutracker.org
   - DOMAIN-SUFFIX,rutracker.org,Tor SOCKS5
-  # telegram DC
-  - IP-CIDR,149.154.160.0/20,Tor SOCKS5,no-resolve
-  - IP-CIDR,5.28.0.0/16,Tor SOCKS5,no-resolve
-  - IP-CIDR,91.108.4.0/22,Tor SOCKS5,no-resolve
-  - IP-CIDR,91.108.8.0/22,Tor SOCKS5,no-resolve
-  - IP-CIDR,91.108.12.0/22,Tor SOCKS5,no-resolve
-  - IP-CIDR,91.108.16.0/22,Tor SOCKS5,no-resolve
-  - IP-CIDR,91.108.20.0/22,Tor SOCKS5,no-resolve
-  - IP-CIDR,91.108.56.0/22,Tor SOCKS5,no-resolve
+
+  # === 6. Сети Telegram и хостингов (БЕЗ no-resolve для режима TUN) ===
+  - IP-CIDR,5.28.0.0/16,Tor SOCKS5
+  - IP-CIDR,91.105.192.0/23,Tor SOCKS5
+  - IP-CIDR,91.108.4.0/22,Tor SOCKS5
+  - IP-CIDR,91.108.8.0/22,Tor SOCKS5
+  - IP-CIDR,91.108.12.0/22,Tor SOCKS5
+  - IP-CIDR,91.108.16.0/22,Tor SOCKS5
+  - IP-CIDR,91.108.20.0/22,Tor SOCKS5
+  - IP-CIDR,91.108.56.0/22,Tor SOCKS5
+  - IP-CIDR,149.154.160.0/20,Tor SOCKS5
+  - IP-CIDR,149.154.164.0/22,Tor SOCKS5
+  - IP-CIDR,185.76.200.0/22,Tor SOCKS5
+  - IP-CIDR,194.221.250.0/24,Tor SOCKS5
+  - IP-CIDR,159.69.155.42/32,Tor SOCKS5
+  - IP-CIDR,167.235.78.36/32,Tor SOCKS5
+  - IP-CIDR,87.122.46.76/32,Tor SOCKS5
+
   # tomorrowland
   - DOMAIN-SUFFIX,awswaf.com,Tor SOCKS5
   - DOMAIN-SUFFIX,tomorrowland.com,Tor SOCKS5
@@ -118,6 +149,7 @@ rules:
   - DOMAIN-SUFFIX,ugreen.com,Tor SOCKS5
   # waterpik.com
   - DOMAIN-SUFFIX,waterpik.com,Tor SOCKS5
+
   # whatsapp
   - DOMAIN-KEYWORD,whatsapp,Tor SOCKS5
   - DOMAIN-SUFFIX,whatsapp.com,Tor SOCKS5
@@ -127,37 +159,44 @@ rules:
   - DOMAIN-SUFFIX,pps.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,static.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,fbcdn.net,Tor SOCKS5
+
   # Meta networks
-  - IP-CIDR,31.13.64.0/18,Tor SOCKS5,no-resolve
-  - IP-CIDR,57.144.0.0/14,Tor SOCKS5,no-resolve
-  - IP-CIDR,66.220.144.0/20,Tor SOCKS5,no-resolve
-  - IP-CIDR,69.63.176.0/20,Tor SOCKS5,no-resolve
-  - IP-CIDR,69.171.224.0/19,Tor SOCKS5,no-resolve
-  - IP-CIDR,157.240.0.0/16,Tor SOCKS5,no-resolve
+  - IP-CIDR,31.13.64.0/18,Tor SOCKS5
+  - IP-CIDR,57.144.0.0/14,Tor SOCKS5
+  - IP-CIDR,66.220.144.0/20,Tor SOCKS5
+  - IP-CIDR,69.63.176.0/20,Tor SOCKS5
+  - IP-CIDR,69.171.224.0/19,Tor SOCKS5
+  - IP-CIDR,157.240.0.0/16,Tor SOCKS5
+
   # whosampled
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
+
   # youtube
-  - DOMAIN-SUFFIX,android.clients.google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,clients4.google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,clients6.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
-# - DOMAIN-SUFFIX,googleusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gstatic.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt2.com,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
-  - DOMAIN-SUFFIX,suggestqueries.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,yt3.googleusercontent.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://googleusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5
-  # Всё остальное напрямую
+  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
+
+  # === 7. Финальная маршрутизация ===
+  # Российские сайты пускаем напрямую
+  - GEOIP,RU,DIRECT
+
+  # Финал: шлем неизвестные сайты НАПРЯМУЮ, пока мосты Tor заблокированы
   - MATCH,DIRECT
