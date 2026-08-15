@@ -24,6 +24,7 @@ rules:
   # === 2. Исключения для системных процессов macOS и транспорта Tor ===
   - PROCESS-NAME,obfs4proxy,DIRECT
   - PROCESS-NAME,Notes,DIRECT
+  - PROCESS-NAME,dataaccessd,DIRECT
 
   # === 3. Защита почтовых и системных портов ===
   - DST-PORT,993,DIRECT
@@ -32,7 +33,8 @@ rules:
   - DST-PORT,465,DIRECT
   - DST-PORT,25,DIRECT
 
-  # === 4. Системные службы и Google (СТРОГО НАПРЯМУЮ ДЛЯ РАБОТЫ ИИ) ===
+  # === 4. Системные службы, iCloud и Google (СТРОГО НАПРЯМУЮ) ===
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,microsoft.com,DIRECT
@@ -41,11 +43,15 @@ rules:
   - DOMAIN-SUFFIX,gmail.com,DIRECT
   - DOMAIN-SUFFIX,google.com,DIRECT
   - DOMAIN-SUFFIX,ipapi.co,DIRECT
-  # Разблокировка ИИ-режимов Google (в обход фильтров Tor)
   - DOMAIN-KEYWORD,google,DIRECT
   - DOMAIN-SUFFIX,gstatic.com,DIRECT
 
-  # === 5. Сайты через Tor ===
+  # === 5. Музыкальные потоки и CDN Spotify (СТРОГО НАПРЯМУЮ для скорости) ===
+  - DOMAIN-SUFFIX,spotifycdn.com,DIRECT
+  - DOMAIN-SUFFIX,akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,fastly.net,DIRECT
+
+  # === 6. Сайты через Tor / Auto ===
   # 4pda
   - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
   # adguard
@@ -107,14 +113,11 @@ rules:
   # small.oisd.nl
   - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
   
-  # ===== Spotify =====
-  - DOMAIN-KEYWORD,spotify,Tor SOCKS5
-  - DOMAIN-SUFFIX,spotify.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,spoti.fi,Tor SOCKS5
-  - DOMAIN-SUFFIX,scdn.co,Tor SOCKS5
-  - DOMAIN-SUFFIX,spotifycdn.com,DIRECT
-  - DOMAIN-SUFFIX,akamaized.net,DIRECT
-  - DOMAIN-SUFFIX,fastly.net,DIRECT
+  # ===== Авторизация и интерфейс Spotify (через группу Auto) =====
+  - DOMAIN-SUFFIX,spotify.com,Auto
+  - DOMAIN-SUFFIX,spoti.fi,Auto
+  - DOMAIN-SUFFIX,scdn.co,Auto
+  - DOMAIN-KEYWORD,spotify,Auto
 
   # telegram
   - DOMAIN-SUFFIX,telegram.org,Tor SOCKS5
@@ -126,7 +129,7 @@ rules:
   # rutracker.org
   - DOMAIN-SUFFIX,rutracker.org,Tor SOCKS5
 
-  # === 6. Сети Telegram и хостингов ===
+  # === 7. Сети Telegram и хостингов ===
   - IP-CIDR,5.28.0.0/16,Tor SOCKS5
   - IP-CIDR,91.105.192.0/23,Tor SOCKS5
   - IP-CIDR,91.108.4.0/22,Tor SOCKS5
@@ -183,6 +186,7 @@ rules:
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,gstatic.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt2.com,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
@@ -196,7 +200,7 @@ rules:
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
   - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
 
-  # === 7. Финальная маршрутизация ===
+  # === 8. Финальная маршрутизация ===
   # Российские сайты пускаем напрямую
   - GEOIP,RU,DIRECT
 
