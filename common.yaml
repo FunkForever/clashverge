@@ -32,7 +32,7 @@ rules:
   - DST-PORT,465,DIRECT
   - DST-PORT,25,DIRECT
 
-  # === 4. Системные службы и Google (напрямую) ===
+  # === 4. Системные службы и Google (СТРОГО НАПРЯМУЮ ДЛЯ РАБОТЫ ИИ) ===
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,microsoft.com,DIRECT
@@ -41,6 +41,9 @@ rules:
   - DOMAIN-SUFFIX,gmail.com,DIRECT
   - DOMAIN-SUFFIX,google.com,DIRECT
   - DOMAIN-SUFFIX,ipapi.co,DIRECT
+  # Разблокировка ИИ-режимов Google (в обход фильтров Tor)
+  - DOMAIN-KEYWORD,google,DIRECT
+  - DOMAIN-SUFFIX,gstatic.com,DIRECT
 
   # === 5. Сайты через Tor ===
   # 4pda
@@ -180,7 +183,6 @@ rules:
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,gstatic.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt2.com,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
