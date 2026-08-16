@@ -2,12 +2,16 @@ allow-lan: false
 mode: rule        # Режим правил
 log-level: info
 
+# === Оптимизация для тяжелого мобильного трафика ===
+global-client-fingerprint: chrome
+keep-alive-interval: 30
+
 proxies:
   - name: "Tor SOCKS5"
     type: socks5
     server: 127.0.0.1
     port: 9050    # стандартный Tor SOCKS5 порт
-    udp: true
+    udp: false    # <- ВАЖНО: Отключаем UDP для Tor, чтобы убрать спам Instagram
 
 proxy-groups:
   - name: "Auto"
@@ -21,8 +25,10 @@ rules:
   - IP-CIDR,7.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
 
-  # === 2. Исключения для системных процессов macOS и транспорта Tor ===
+  # === 2. Исключения для системных процессов (Mac и Android) ===
   - PROCESS-NAME,obfs4proxy,DIRECT
+  - PROCESS-NAME,org.torproject.android,DIRECT  # <- Жесткое исключение для Orbot (рвем петлю на телефоне)
+  - PROCESS-NAME,com.mi.globalminusscreen,DIRECT # <- Исключение для Xiaomi
   - PROCESS-NAME,Notes,DIRECT
   - PROCESS-NAME,dataaccessd,DIRECT
 
@@ -33,42 +39,47 @@ rules:
   - DST-PORT,465,DIRECT
   - DST-PORT,25,DIRECT
 
-  # === 4. Системные службы и iCloud (СТРОГО НАПРЯМУЮ) ===
+  # === 4. Системные службы, iCloud и Google Телеметрия (СТРОГО НАПРЯМУЮ) ===
   - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT    # <- Исправление для служб Apple из лога
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,mzstatic.com,DIRECT
   - DOMAIN-SUFFIX,microsoft.com,DIRECT
   - DOMAIN-SUFFIX,://microsoft.com,DIRECT
   - DOMAIN-SUFFIX,ipapi.co,DIRECT
+  - DOMAIN-SUFFIX,effectssdk.ai,DIRECT
+  - DOMAIN-SUFFIX,pubsub.googleapis.com,DIRECT  # <- Убираем фоновый спам Google из лога
 
-  # === 5. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE (В TOR ДО ФИЛЬТРА GOOGLE) ===
+  # === 5. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED ===
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,android.clients.google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,clients4.google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,clients6.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gstatic.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
   - DOMAIN-SUFFIX,gvt2.com,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
-  - DOMAIN-SUFFIX,suggestqueries.google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
   - DOMAIN-SUFFIX,://googleusercontent.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
 
   # === 6. ОСТАЛЬНОЙ GOOGLE И РАЗБЛОКИРОВКА ИИ (СТРОГО НАПРЯМУЮ) ===
   - DOMAIN-SUFFIX,gmail.com,DIRECT
-  - DOMAIN-SUFFIX,play.google.com,DIRECT
+  - DOMAIN-SUFFIX,://google.com,DIRECT
   - DOMAIN-SUFFIX,google.com,DIRECT
   - DOMAIN-KEYWORD,google,DIRECT
   - DOMAIN-SUFFIX,gstatic.com,DIRECT
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-KEYWORD,github,DIRECT
 
   # === 7. Музыкальные потоки и CDN Spotify (СТРОГО НАПРЯМУЮ) ===
   - DOMAIN-SUFFIX,spotifycdn.com,DIRECT
@@ -130,8 +141,6 @@ rules:
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
   # portchecker.co
   - DOMAIN-SUFFIX,portchecker.co,Tor SOCKS5
-  # YouTube revanced
-  - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
   # small.oisd.nl
   - DOMAIN-SUFFIX,small.oisd.nl,Tor SOCKS5
   
@@ -202,8 +211,5 @@ rules:
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
 
   # === 10. Финальная маршрутизация ===
-  # Российские сайты пускаем напрямую
   - GEOIP,RU,DIRECT
-
-  # Финал: направляем весь остальной неизвестный трафик в созданную группу Auto
   - MATCH,Auto
