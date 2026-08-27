@@ -25,68 +25,20 @@ rules:
   - IP-CIDR,7.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
 
-  # === 2. Исключения для системных процессов (Mac и Android) ===
-  - PROCESS-NAME,obfs4proxy,DIRECT
-  - PROCESS-NAME,org.torproject.android,DIRECT  # <- Жесткое исключение для Orbot (рвем петлю на телефоне)
-  - PROCESS-NAME,com.mi.globalminusscreen,DIRECT # <- Исключение для Xiaomi
-  - PROCESS-NAME,Notes,DIRECT
-  - PROCESS-NAME,dataaccessd,DIRECT
-
-  # === 3. Защита почтовых и системных портов ===
-  - DST-PORT,993,DIRECT
-  - DST-PORT,143,DIRECT
-  - DST-PORT,585,DIRECT
-  - DST-PORT,465,DIRECT
-  - DST-PORT,25,DIRECT
-
-  # === 4. Системные службы, iCloud и Google Телеметрия (СТРОГО НАПРЯМУЮ) ===
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
-  - DOMAIN-SUFFIX,apple.com,DIRECT
-  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
-  - DOMAIN-SUFFIX,microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,://microsoft.com,DIRECT
-  - DOMAIN-SUFFIX,ipapi.co,DIRECT
-  - DOMAIN-SUFFIX,effectssdk.ai,DIRECT
-  - DOMAIN-SUFFIX,pubsub.googleapis.com,DIRECT  # <- Убираем фоновый спам Google из лога
-
-  # === 5. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED ===
+  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (В TOR) ===
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,gstatic.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,gvt1.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,gvt2.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
-  - DOMAIN-SUFFIX,://google.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://googleusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
+  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
 
-  # === 6. ОСТАЛЬНОЙ GOOGLE И РАЗБЛОКИРОВКА ИИ (СТРОГО НАПРЯМУЮ) ===
-  - DOMAIN-SUFFIX,gmail.com,DIRECT
-  - DOMAIN-SUFFIX,://google.com,DIRECT
-  - DOMAIN-SUFFIX,google.com,DIRECT
-  - DOMAIN-KEYWORD,google,DIRECT
-  - DOMAIN-SUFFIX,gstatic.com,DIRECT
-  - DOMAIN-SUFFIX,github.com,DIRECT
-  - DOMAIN-KEYWORD,github,DIRECT
-
-  # === 7. Музыкальные потоки и CDN Spotify (СТРОГО НАПРЯМУЮ) ===
-  - DOMAIN-SUFFIX,spotifycdn.com,DIRECT
-  - DOMAIN-SUFFIX,akamaized.net,DIRECT
-  - DOMAIN-SUFFIX,fastly.net,DIRECT
-
-  # === 8. Сайты через Tor / Auto ===
+  # === 3. Сайты через Tor / Auto ===
   # 4pda
   - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
   # adguard
@@ -160,7 +112,7 @@ rules:
   # rutracker.org
   - DOMAIN-SUFFIX,rutracker.org,Tor SOCKS5
 
-  # === 9. Сети Telegram и хостингов ===
+  # === 4. Сети Telegram и хостингов ===
   - IP-CIDR,5.28.0.0/16,Tor SOCKS5
   - IP-CIDR,91.105.192.0/23,Tor SOCKS5
   - IP-CIDR,91.108.4.0/22,Tor SOCKS5
@@ -210,6 +162,5 @@ rules:
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
 
-  # === 10. Финальная маршрутизация ===
-  - GEOIP,RU,DIRECT
-  - MATCH,Auto
+  # === 5. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное строго НАПРЯМУЮ) ===
+  - MATCH,DIRECT
