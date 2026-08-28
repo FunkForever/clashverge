@@ -27,7 +27,8 @@ rules:
   - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
   # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
-  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5          # Жесткий чистый адрес API YouTube из лога (строки 5, 7, 10, 19, 20, 25)
+  - DOMAIN-SUFFIX,yt3.googleusercontent.com,Tor SOCKS5         # Жестко зажимаем CDN аватарок и статики Ютуба в Tor!
+  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5          # Точечный суффикс YouTube API из лога
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
@@ -41,7 +42,7 @@ rules:
   - DOMAIN-KEYWORD,googlevideo,Tor SOCKS5
 
   # === 3. СИСТЕМНЫЕ СЕРВИСЫ GOOGLE (СТРОГО НАПРЯМУЮ В DIRECT) ===
-  - DOMAIN-SUFFIX,play.googleapis.com,DIRECT                  # Чистый Google Play Маркет (строки 3 и 4 твоего лога)
+  - DOMAIN-SUFFIX,://googleapis.com,DIRECT                  # Чистый Google Play Маркет
   - DOMAIN-SUFFIX,googleapis.com,DIRECT                       # Весь остальной базовый Google API без всяких ://
 
   # === 4. GITHUB И СЕРВИСЫ ХОЛДИНГА ===
