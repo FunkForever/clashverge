@@ -27,8 +27,8 @@ rules:
   - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
   # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
-  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5          # Конкретное изолированное правило под субдомен из лога
-  - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5                   # Чистый общий суффикс для остальных сервисов Google API
+  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5          # Изолированный субдомен YouTube API из лога
+  - DOMAIN,yt3.googleusercontent.com,Tor SOCKS5               # Чистый точечный домен аватарок YouTube
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
@@ -41,12 +41,19 @@ rules:
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
   - DOMAIN-KEYWORD,googlevideo,Tor SOCKS5
 
-  # === 3. GITHUB И СЕРВИСЫ ХОЛДИНГА ===
-  - DOMAIN,://githubusercontent.com,Tor SOCKS5          # Аватарки Гитхаба
-  - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5           # Статика Гитхаба
-  # Сам сайт github.com, Google Ассистент и рабочий GitLab холдинга летят по DIRECT напрямую.
+  # === 3. ТОЧЕЧНЫЙ ПЕРЕХВАТ ЗАБЛОКИРОВАННЫХ СУБДОМЕНОВ GOOGLE APIS (СТРОГО В TOR) ===
+  - DOMAIN,googlevideo.googleapis.com,Tor SOCKS5              # Служебный домен видеопотоков
+  - DOMAIN,ytimages.googleapis.com,Tor SOCKS5                 # Служебный домен статики
+  - DOMAIN,speech.googleapis.com,Tor SOCKS5                   # Голосовой ввод Ассистента
+  - DOMAIN,texttospeech.googleapis.com,Tor SOCKS5             # Синтез речи Ассистента
+  - DOMAIN,embeddedassistant.googleapis.com,Tor SOCKS5        # Системный шлюз Ассистента
+  - DOMAIN,dialogflow.googleapis.com,Tor SOCKS5               # Контекст команд Ассистента
 
-  # === 4. Сайты через Tor / Auto ===
+  # === 4. GITHUB И СЕРВИСЫ ХОЛДИНГА ===
+  - DOMAIN,avatars.githubusercontent.com,Tor SOCKS5          # Чистый точечный домен аватарок GitHub
+  # Сам сайт github.com, статика githubusercontent и рабочий GitLab холдинга летят напрямую через MATCH,DIRECT ниже.
+
+  # === 5. Сайты через Tor / Auto ===
   # 4pda
   - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
   # adguard
@@ -117,7 +124,7 @@ rules:
   # rutracker.org
   - DOMAIN-SUFFIX,rutracker.org,Tor SOCKS5
 
-  # === 5. Сети Telegram и хостингов ===
+  # === 6. Сети Telegram и хостингов ===
   - IP-CIDR,5.28.0.0/16,Tor SOCKS5
   - IP-CIDR,91.105.192.0/23,Tor SOCKS5
   - IP-CIDR,91.108.4.0/22,Tor SOCKS5
@@ -158,7 +165,7 @@ rules:
   - IP-CIDR,31.13.64.0/18,Tor SOCKS5
   - IP-CIDR,57.144.0.0/14,Tor SOCKS5
   - IP-CIDR,66.220.144.0/20,Tor SOCKS5
-  - IP-CIDR,69.63.176.0/20,Tor SOCKS5                      # Фикс опечатки с нулем
+  - IP-CIDR,69.63.176.0/20,Tor SOCKS5
   - IP-CIDR,69.171.224.0/19,Tor SOCKS5
   - IP-CIDR,157.240.0.0/16,Tor SOCKS5
 
@@ -167,5 +174,5 @@ rules:
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
 
-  # === 6. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное строго НАПРЯМУЮ) ===
+  # === 8. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное: play.googleapis.com, пуши, Google Диск, GitLab — строго НАПРЯМУЮ) ===
   - MATCH,DIRECT
