@@ -3,7 +3,6 @@ mode: rule        # Режим правил
 log-level: info
 
 # === Оптимизация для тяжелого мобильного трафика ===
-global-client-fingerprint: chrome
 keep-alive-interval: 30
 
 proxies:
@@ -11,7 +10,7 @@ proxies:
     type: socks5
     server: 127.0.0.1
     port: 9050    # стандартный Tor SOCKS5 порт
-    udp: false    # <- ВАЖНО: Отключаем UDP для Tor, чтобы убрать спам Instagram
+    udp: false    # Отключаем UDP для Tor, чтобы убрать спам Instagram
 
 proxy-groups:
   - name: "Auto"
@@ -21,24 +20,34 @@ proxy-groups:
       - "DIRECT"
 
 rules:
-  # === 1. Мусорный трафик и ошибочные IP ===
+  # === 1. Мусорный трафик, ошибочные IP и мгновенный сброс рекламы ===
   - IP-CIDR,7.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT-DROP
+  - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
-  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (В TOR) ===
+  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
+  - DOMAIN,://googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
   - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
 
-  # === 3. Сайты через Tor / Auto ===
+  # === 3. GITHUB (СТРОГО В TOR ДЛЯ СТАТИКИ И АВАТАРОК) ===
+  - DOMAIN,://githubusercontent.com,Tor SOCKS5
+  - DOMAIN,://github.com,Tor SOCKS5
+  - DOMAIN,://github.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,github.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,githubapp.com,Tor SOCKS5
+
+  # === 4. Сайты через Tor / Auto ===
   # 4pda
   - DOMAIN-SUFFIX,4pda.to,Tor SOCKS5
   # adguard
@@ -112,7 +121,7 @@ rules:
   # rutracker.org
   - DOMAIN-SUFFIX,rutracker.org,Tor SOCKS5
 
-  # === 4. Сети Telegram и хостингов ===
+  # === 5. Сети Telegram и хостингов ===
   - IP-CIDR,5.28.0.0/16,Tor SOCKS5
   - IP-CIDR,91.105.192.0/23,Tor SOCKS5
   - IP-CIDR,91.108.4.0/22,Tor SOCKS5
@@ -162,5 +171,5 @@ rules:
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
 
-  # === 5. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное строго НАПРЯМУЮ) ===
+  # === 6. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное строго НАПРЯМУЮ) ===
   - MATCH,DIRECT
