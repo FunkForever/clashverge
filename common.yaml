@@ -51,7 +51,8 @@ rules:
 
   # === 4. GITHUB И СЕРВИСЫ ХОЛДИНГА ===
   - DOMAIN,avatars.githubusercontent.com,Tor SOCKS5          # Чистый точечный домен аватарок GitHub
-  # Сам сайт github.com, статика githubusercontent и рабочий GitLab холдинга летят напрямую через MATCH,DIRECT ниже.
+  - DOMAIN,raw.githubusercontent.com,Tor SOCKS5              # Точечный фикс блокировки ТСПУ для raw-контента
+  # Сам сайт github.com, остальные медиа-сервера githubusercontent и рабочий GitLab холдинга летят по DIRECT напрямую.
 
   # === 5. Сайты через Tor / Auto ===
   # 4pda
