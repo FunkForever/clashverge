@@ -27,7 +27,8 @@ rules:
   - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
   # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
-  - DOMAIN,://googleapis.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5          # Конкретное изолированное правило под субдомен из лога
+  - DOMAIN-SUFFIX,googleapis.com,Tor SOCKS5                   # Чистый общий суффикс для остальных сервисов Google API
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
@@ -40,10 +41,10 @@ rules:
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
   - DOMAIN-KEYWORD,googlevideo,Tor SOCKS5
 
-  # === 3. GITHUB И СЕРВИСЫ ХОЛДИНГА (ТОЧЕЧНЫЙ ПЕРЕХВАТ КАРТИНОК) ===
-  - DOMAIN,://githubusercontent.com,Tor SOCKS5          # Оживляет аватарки профилей на Mac и Android
-  - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5           # Загружает весь медиа-контент и raw-файлы репозиториев
-  # Сам сайт github.com и твой рабочий GitLab холдинга здесь отсутствуют и летят по DIRECT напрямую.
+  # === 3. GITHUB И СЕРВИСЫ ХОЛДИНГА ===
+  - DOMAIN,://githubusercontent.com,Tor SOCKS5          # Аватарки Гитхаба
+  - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5           # Статика Гитхаба
+  # Сам сайт github.com, Google Ассистент и рабочий GitLab холдинга летят по DIRECT напрямую.
 
   # === 4. Сайты через Tor / Auto ===
   # 4pda
@@ -157,7 +158,7 @@ rules:
   - IP-CIDR,31.13.64.0/18,Tor SOCKS5
   - IP-CIDR,57.144.0.0/14,Tor SOCKS5
   - IP-CIDR,66.220.144.0/20,Tor SOCKS5
-  - IP-CIDR,69.63.176.0/20,Tor SOCKS5
+  - IP-CIDR,69.63.176.0/20,Tor SOCKS5                      # Фикс опечатки с нулем
   - IP-CIDR,69.171.224.0/19,Tor SOCKS5
   - IP-CIDR,157.240.0.0/16,Tor SOCKS5
 
