@@ -26,12 +26,12 @@ rules:
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
 
   # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (В TOR) ===
+  - DOMAIN,://googleapis.com,Tor SOCKS5     # <- ИСПРАВЛЕНО: Теперь жестко идет в Tor
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
   - DOMAIN-SUFFIX,ggpht.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtubeeducation.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube-nocookie.com,Tor SOCKS5
   - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
