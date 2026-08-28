@@ -3,7 +3,6 @@ mode: rule        # Режим правил
 log-level: info
 
 # === Оптимизация для тяжелого мобильного трафика ===
-global-client-fingerprint: chrome
 keep-alive-interval: 30
 
 proxies:
