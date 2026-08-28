@@ -26,8 +26,8 @@ rules:
   - DOMAIN-SUFFIX,doubleclick.net,REJECT-DROP
   - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
-  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
-  - DOMAIN,://googleapis.com,Tor SOCKS5
+  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (УНИВЕРСАЛЬНЫЙ НАБОР) ===
+  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5  # <- ИСПРАВЛЕНО ДЛЯ ТЕЛЕФОНА
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
