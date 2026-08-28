@@ -24,8 +24,8 @@ rules:
   - IP-CIDR,7.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
 
-  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (В TOR) ===
-  - DOMAIN,youtubei.googleapis.com,Tor SOCKS5
+  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
+  - DOMAIN,://googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
@@ -37,10 +37,10 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
 
-  # === 3. GITHUB И GITLAB (ТОЧЕЧНЫЙ ЗАВОРOT ДЛЯ СТАТИКИ И АВАТАРОК ЧЕРЕЗ TOR) ===
-  - DOMAIN,avatars.githubusercontent.com,Tor SOCKS5
-  - DOMAIN,collector.github.com,Tor SOCKS5
-  - DOMAIN,api.github.com,Tor SOCKS5
+  # === 3. GITHUB И GITLAB (СТРОГО В TOR ДЛЯ СТАТИКИ И АВАТАРОК) ===
+  - DOMAIN,://githubusercontent.com,Tor SOCKS5
+  - DOMAIN,://github.com,Tor SOCKS5
+  - DOMAIN,://github.com,Tor SOCKS5
   - DOMAIN-SUFFIX,github.com,Tor SOCKS5
   - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,githubapp.com,Tor SOCKS5
@@ -172,5 +172,5 @@ rules:
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
 
-  # === 6. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное строго НАПРЯМУЮ, включая рабочую почту холдинга) ===
+  # === 6. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное строго НАПРЯМУЮ) ===
   - MATCH,DIRECT
