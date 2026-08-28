@@ -26,8 +26,8 @@ rules:
   - DOMAIN-SUFFIX,doubleclick.net,REJECT-DROP
   - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
-  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (ТОЧЕЧНЫЙ ПЕРЕХВАТ) ===
-  - DOMAIN-SUFFIX,://googleapis.com,Tor SOCKS5
+  # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
+  - DOMAIN,://googleapis.com,Tor SOCKS5
   - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
@@ -38,15 +38,12 @@ rules:
   - DOMAIN-SUFFIX,revanced.app,Tor SOCKS5
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
-  - DOMAIN-KEYWORD,googlevideo,Tor SOCKS5          # <- Ловит скрытые видеопотоки на Android
+  - DOMAIN-KEYWORD,googlevideo,Tor SOCKS5
 
-  # === 3. GITHUB (СТРОГО В TOR ДЛЯ СТАТИКИ И АВАТАРОК) ===
-  - DOMAIN,://githubusercontent.com,Tor SOCKS5
-  - DOMAIN,://github.com,Tor SOCKS5
-  - DOMAIN,://github.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,github.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,githubapp.com,Tor SOCKS5
+  # === 3. GITHUB И СЕРВИСЫ ХОЛДИНГА (ТОЧЕЧНЫЙ ПЕРЕХВАТ КАРТИНОК) ===
+  - DOMAIN,://githubusercontent.com,Tor SOCKS5          # Оживляет аватарки профилей на Mac и Android
+  - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5           # Загружает весь медиа-контент и raw-файлы репозиториев
+  # Сам сайт github.com и твой рабочий GitLab холдинга здесь отсутствуют и летят по DIRECT напрямую.
 
   # === 4. Сайты через Tor / Auto ===
   # 4pda
@@ -96,9 +93,6 @@ rules:
   - DOMAIN-SUFFIX,medium.com,Tor SOCKS5
   # openai
   - DOMAIN-SUFFIX,chatgpt.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,oaistatic.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,oaiusercontent.com,Tor SOCKS5
-  - DOMAIN-SUFFIX,openai.com,Tor SOCKS5
   # orbot
   - DOMAIN-SUFFIX,orbot.app,Tor SOCKS5
   # portchecker.co
