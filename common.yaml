@@ -10,7 +10,7 @@ proxies:
     type: socks5
     server: 127.0.0.1
     port: 9050    # стандартный Tor SOCKS5 порт
-    udp: false    # <- ВАЖНО: Отключаем UDP для Tor, чтобы убрать спам Instagram
+    udp: false    # Отключаем UDP для Tor, чтобы убрать спам Instagram
 
 proxy-groups:
   - name: "Auto"
@@ -20,9 +20,11 @@ proxy-groups:
       - "DIRECT"
 
 rules:
-  # === 1. Мусорный трафик и ошибочные IP ===
+  # === 1. Мусорный трафик, ошибочные IP и мгновенный сброс рекламы ===
   - IP-CIDR,7.0.0.0/8,REJECT,no-resolve
   - IP-CIDR,0.0.0.0/8,REJECT,no-resolve
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT-DROP
+  - DOMAIN-KEYWORD,googleads,REJECT-DROP
 
   # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
   - DOMAIN,://googleapis.com,Tor SOCKS5
@@ -37,16 +39,13 @@ rules:
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com,Tor SOCKS5
   - DOMAIN-SUFFIX,sponsor.ajay.app,Tor SOCKS5
 
-  # === 3. GITHUB И GITLAB (СТРОГО В TOR ДЛЯ СТАТИКИ И АВАТАРОК) ===
+  # === 3. GITHUB (СТРОГО В TOR ДЛЯ СТАТИКИ И АВАТАРОК) ===
   - DOMAIN,://githubusercontent.com,Tor SOCKS5
   - DOMAIN,://github.com,Tor SOCKS5
   - DOMAIN,://github.com,Tor SOCKS5
   - DOMAIN-SUFFIX,github.com,Tor SOCKS5
   - DOMAIN-SUFFIX,githubusercontent.com,Tor SOCKS5
   - DOMAIN-SUFFIX,githubapp.com,Tor SOCKS5
-  - DOMAIN-KEYWORD,github,Tor SOCKS5
-  - DOMAIN-SUFFIX,gitlab.com,Tor SOCKS5
-  - DOMAIN-KEYWORD,gitlab,Tor SOCKS5
 
   # === 4. Сайты через Tor / Auto ===
   # 4pda
