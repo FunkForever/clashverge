@@ -29,7 +29,7 @@ rules:
   # === 2. ГЛАВНЫЙ ПРИОРИТЕТ ДЛЯ YOUTUBE И REVANCED (СТРОГО В TOR) ===
   - DOMAIN-SUFFIX,youtubei.googleapis.com,Tor SOCKS5          # Изолированный субдомен YouTube API из лога
   - DOMAIN,yt3.googleusercontent.com,Tor SOCKS5               # Чистый точечный домен аватарок YouTube
-  - DOMAIN-SUFFIX,googlevideo.com,Tor SOCKS5
+  - DOMAIN-SUFFIX,googlevideo.com,DIRECT
   - DOMAIN-SUFFIX,youtube.com,Tor SOCKS5
   - DOMAIN-SUFFIX,youtu.be,Tor SOCKS5
   - DOMAIN-SUFFIX,ytimg.com,Tor SOCKS5
