@@ -1,6 +1,6 @@
 allow-lan: false
 mode: rule        # Режим правил
-log-level: debug
+log-level: info
 
 # === Оптимизация для тяжелого мобильного трафика ===
 keep-alive-interval: 30
@@ -160,7 +160,6 @@ rules:
   - DOMAIN-SUFFIX,mmg.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,pps.whatsapp.net,Tor SOCKS5
   - DOMAIN-SUFFIX,static.whatsapp.net,Tor SOCKS5
-  - DOMAIN-SUFFIX,fbcdn.net,Tor SOCKS5
 
   # Meta networks
   - IP-CIDR,31.13.64.0/18,Tor SOCKS5
@@ -174,6 +173,19 @@ rules:
   - DOMAIN-SUFFIX,whosampled.com,Tor SOCKS5
   # yougetsignal.com
   - DOMAIN-SUFFIX,yougetsignal.com,Tor SOCKS5
+
+  # === 9. RUTUBE.RU — РАЗДЕЛЕНИЕ ТРАФИКА (НОВОЕ) ===
+  # СНАЧАЛА публичные (опубликованные) субдомены → идут через провайдера (Auto)
+  - DOMAIN-SUFFIX,player.rutube.ru,Auto
+  - DOMAIN-SUFFIX,video.rutube.ru,Auto
+  - DOMAIN-SUFFIX,static.rutube.ru,Auto
+  - DOMAIN-SUFFIX,cdn.rutube.ru,Auto
+  - DOMAIN-SUFFIX,rt-st.rutube.ru,Auto
+  - DOMAIN-SUFFIX,api.rutube.ru,Auto
+  - DOMAIN-SUFFIX,media.rutube.ru,Auto
+  # СНИЗУ общий сачок: всё остальное (внутренние/неопубликованные субдомены) → DIRECT
+  # DIRECT уйдет в системный прокси, а система сама направит в корпоративный VPN
+  - DOMAIN-SUFFIX,rutube.ru,DIRECT
 
   # === 8. ФИНАЛЬНАЯ МАРШРУТИЗАЦИЯ (Всё остальное: play.googleapis.com, пуши, Google Диск, GitLab — строго НАПРЯМУЮ) ===
   - MATCH,DIRECT
